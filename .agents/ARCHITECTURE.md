@@ -36,4 +36,6 @@ way around. The public API must not import platform implementations directly.
   of the public package API.
 - Model lifecycle explicitly: start, stop, and dispose must be safe to call and
   must close streams and cancel subscriptions deterministically.
+- In MVP 1, `stop()` ends the active session but keeps the recognizer reusable;
+  `dispose()` is the terminal operation and closes the result stream.
 - Document an architectural exception in the review notes before merging it.

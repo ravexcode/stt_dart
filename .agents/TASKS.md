@@ -27,13 +27,13 @@ tested, and usable without importing a platform package.
 
 ## Acceptance checks
 
-- [ ] Public models and behaviors have focused tests.
-- [ ] Stream ownership, completion, cancellation, and error behavior are
+- [x] Public models and behaviors have focused tests.
+- [x] Stream ownership, completion, cancellation, and error behavior are
   defined.
-- [ ] Start, stop, and dispose behavior is deterministic and documented.
-- [ ] `flutter analyze` passes.
-- [ ] `flutter test` passes.
-- [ ] No platform-specific dependency or implementation is exposed by the
+- [x] Start, stop, and dispose behavior is deterministic and documented.
+- [x] `flutter analyze` passes.
+- [x] `flutter test` passes.
+- [x] No platform-specific dependency or implementation is exposed by the
   public library.
 
 When a check cannot run, record why and do not mark it complete.

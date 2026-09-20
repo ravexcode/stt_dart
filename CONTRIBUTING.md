@@ -2,6 +2,11 @@
 
 Thank you for helping build `stt_dart`. Contributions are welcome for documentation, tests, API design, platform integrations, and speech-to-text functionality.
 
+The current target is MVP 1: the platform-independent public contract, typed
+configuration and errors, the in-memory mock, focused tests, and the Flutter
+example. Do not add native microphone integrations until the MVP 1 contract is
+stable and the relevant roadmap item is opened.
+
 ## Before you start
 
 1. Search existing issues and pull requests so your work does not duplicate an open discussion.
@@ -30,6 +35,9 @@ dart pub publish --dry-run
 ```
 
 If a check cannot run locally, explain why in the pull request description. Add or update tests whenever behavior changes.
+
+For public API changes, update the API documentation, `.agents/ARCHITECTURE.md`,
+and `.agents/TASKS.md` when the lifecycle or acceptance criteria change.
 
 ## Commit and pull request guidance
 
