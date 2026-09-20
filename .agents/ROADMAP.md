@@ -1,11 +1,11 @@
 ## MVP 1 — contracts and local development
 
-- [ ] Public API
-- [ ] Typed configuration and errors
-- [ ] STT mock
-- [ ] Focused unit tests
-- [ ] Flutter example
-- [ ] Documentation and contribution workflow
+- [x] Public API
+- [x] Typed configuration and errors
+- [x] STT mock
+- [x] Focused unit tests
+- [x] Flutter example
+- [x] Documentation and contribution workflow
 
 ## MVP 2 — platform input
 

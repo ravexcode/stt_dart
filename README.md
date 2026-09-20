@@ -6,7 +6,8 @@
 
 `stt_dart` is an open-source Flutter package for processing a user's voice from audio and converting it into text.
 
-> The package is currently in its foundation stage. The public speech-to-text API and platform integrations are still being developed.
+> MVP 1 provides the platform-independent API and an in-memory mock. Native
+> microphone and transcription integrations are planned for later MVPs.
 
 ## Goals
 
@@ -31,9 +32,36 @@ flutter pub get
 
 The first release is not available on pub.dev until it has been published. See [Contributing](CONTRIBUTING.md) for local development instructions.
 
-## Current usage
+## Usage
 
-The speech-to-text API is not available yet. Until the first implementation is released, use the repository to follow development and contribute to the API design.
+The public API is platform-independent. MVP 1 includes a mock recognizer for
+tests, examples, and local UI development:
+
+```dart
+final recognizer = MockSpeechToText();
+final subscription = recognizer.results.listen((result) {
+  print(result.transcript);
+});
+
+await recognizer.start(const SpeechToTextConfig(localeId: 'en-US'));
+recognizer.emitResult(
+  const SpeechToTextResult(transcript: 'hello', isFinal: true),
+);
+await recognizer.stop();
+await subscription.cancel();
+await recognizer.dispose();
+```
+
+Run the Flutter example from the repository root:
+
+```bash
+cd example
+flutter run
+```
+
+The mock does not access a microphone or perform transcription. It exists so
+the public lifecycle and stream contract can be integrated before platform
+implementations arrive.
 
 ## Development
 
@@ -50,6 +78,9 @@ flutter analyze
 flutter test
 dart pub publish --dry-run
 ```
+
+The example has its own analysis configuration and can be checked with
+`cd example && flutter analyze`.
 
 ## Releases
 
