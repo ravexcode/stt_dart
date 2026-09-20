@@ -4,6 +4,9 @@
 
 Build the platform interface and public Dart API.
 
+The current phase is complete only when the public contracts are documented,
+tested, and usable without importing a platform package.
+
 ## Do not implement yet
 
 - Android microphone capture
@@ -21,3 +24,16 @@ Build the platform interface and public Dart API.
 - Add tests.
 - Add documentation comments.
 - Keep public API platform-independent.
+
+## Acceptance checks
+
+- [ ] Public models and behaviors have focused tests.
+- [ ] Stream ownership, completion, cancellation, and error behavior are
+  defined.
+- [ ] Start, stop, and dispose behavior is deterministic and documented.
+- [ ] `flutter analyze` passes.
+- [ ] `flutter test` passes.
+- [ ] No platform-specific dependency or implementation is exposed by the
+  public library.
+
+When a check cannot run, record why and do not mark it complete.
