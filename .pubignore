@@ -1,0 +1,8 @@
+# Internal planning and repository automation files are not package contents.
+odd/
+.github/
+.codegraph/
+build/
+.dart_tool/
+.idea/
+*.iml
