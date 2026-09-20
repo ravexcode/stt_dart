@@ -1,0 +1,78 @@
+name: Pull request checks
+
+on:
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  package:
+    name: Package checks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: 3.47.3
+          channel: stable
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Check formatting
+        run: |
+          if [ -d example/lib ]; then
+            dart format --output=none --set-exit-if-changed lib test example/lib
+          else
+            dart format --output=none --set-exit-if-changed lib test
+          fi
+
+      - name: Analyze package
+        run: flutter analyze
+
+      - name: Run package tests
+        run: flutter test
+
+      - name: Validate publish archive
+        run: dart pub publish --dry-run
+
+  example:
+    name: Example checks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        if: hashFiles('example/pubspec.yaml') != ''
+        with:
+          flutter-version: 3.47.3
+          channel: stable
+          cache: true
+
+      - name: Install example dependencies
+        working-directory: example
+        if: hashFiles('example/pubspec.yaml') != ''
+        run: flutter pub get
+
+      - name: Analyze example
+        working-directory: example
+        if: hashFiles('example/pubspec.yaml') != ''
+        run: flutter analyze
+
+      - name: Report missing example
+        if: hashFiles('example/pubspec.yaml') == ''
+        run: echo 'No example/pubspec.yaml found; example checks will run once the example is added.'

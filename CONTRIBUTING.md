@@ -39,6 +39,18 @@ If a check cannot run locally, explain why in the pull request description. Add 
 For public API changes, update the API documentation, `.agents/ARCHITECTURE.md`,
 and `.agents/TASKS.md` when the lifecycle or acceptance criteria change.
 
+## Pull request merge checks
+
+Pull requests targeting `main` run the `Pull request checks` workflow. Configure
+the repository's `main` branch protection to require these status checks before
+merging:
+
+- `Package checks`
+- `Example checks`
+
+The workflow validates the package but does not publish it. Publication remains
+restricted to matching version tags through `.github/workflows/publish.yml`.
+
 ## Commit and pull request guidance
 
 - Use a clear imperative commit subject, such as `Add microphone permission guidance`.
