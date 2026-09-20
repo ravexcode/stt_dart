@@ -31,6 +31,11 @@ A change is ready when:
 Do not claim platform support, native integration, or release readiness based
 only on static analysis or unit tests.
 
+# Working with Github
+
+- You can commit, push and create pull requests on Github.
+- Before pushing, run `flutter analyze` and `flutter test` locally.
+
 ## Links
 - [Architecture](./.agents/ARCHITECTURE.md)
 - [Tasks](./.agents/TASKS.md)
